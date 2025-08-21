@@ -18,14 +18,13 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  late final UniqueRandomColorGenerator _colorGenerator =
+  final UniqueRandomColorGenerator _colorGenerator =
       UniqueRandomColorGenerator();
 
   /// The current background color of the screen.
-  late Color _backgroundColor;
-
+  Color _backgroundColor = Colors.white; // temporary default
   /// The current text color of the screen.
-  late Color _textColor;
+  Color _textColor = Colors.black; // temporary default
 
   @override
   void initState() {

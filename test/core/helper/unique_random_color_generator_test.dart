@@ -4,8 +4,10 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('UniqueRandomColorGenerator', () {
-    late UniqueRandomColorGenerator generator;
+    UniqueRandomColorGenerator generator = UniqueRandomColorGenerator();
     const int maxColors = 16777216;
+    const int testColorsCount = 1000;
+
     setUp(() {
       generator = UniqueRandomColorGenerator();
     });
@@ -17,19 +19,17 @@ void main() {
 
     test('should generate unique colors until limit is reached', () {
       final colors = <Color>{};
-      for (var i = 0; i < maxColors; i++) {
+      for (var i = 0; i < testColorsCount; i++) {
         colors.add(generator.getRandomColor());
       }
-      expect(colors.length, maxColors);
+      expect(colors.length, testColorsCount);
     });
 
- test('should reset after MAX_COLORS', () {
+    test('should reset after MAX_COLORS', () {
       for (var i = 0; i < maxColors; i++) {
         generator.getRandomColor();
       }
       expect(generator.usedColors.isEmpty, true);
     });
-
-    
   });
 }

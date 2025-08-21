@@ -9,6 +9,16 @@ class UniqueRandomColorGenerator {
   /// Maximum number of unique colors (256^3 for RGB).
   static const int maxColors = 16777216;
 
+  /// The maximum value for each RGB color channel (red, green, blue)
+  /// when generating random colors.
+  /// This value is exclusive, meaning valid channel values range from 0 to 255.
+  static const int maxRgbValue = 256; // for random
+
+  /// The maximum value for the alpha (opacity) channel
+  /// in ARGB color representation.
+  /// Represents full opacity.
+  static const int maxAlpha = 255;
+
   /// Random number generator.
   final Random _random;
 
@@ -26,10 +36,10 @@ class UniqueRandomColorGenerator {
     Color color;
     do {
       color = Color.fromARGB(
-        255,
-        _random.nextInt(256),
-        _random.nextInt(256),
-        _random.nextInt(256),
+        maxAlpha,
+        _random.nextInt(maxRgbValue),
+        _random.nextInt(maxRgbValue),
+        _random.nextInt(maxRgbValue),
       );
     } while (usedColors.contains(color));
 
